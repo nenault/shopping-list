@@ -13,6 +13,19 @@ const routes = (app) => {
       if (shops) {
         if (shops.isDeleted === false) {
           return res.status(400).json({ message: "Doublon" });
+        } else {
+          let text = shops.text;
+          Shop.findOneAndUpdate(
+            { text },
+            { isDeleted: false },
+            { returnNewDocument: true }
+          )
+            .then((result) => {
+              serverResponses.sendSuccess(res, messages.SUCCESSFUL, result);
+            })
+            .catch((e) => {
+              serverResponses.sendError(res, messages.BAD_REQUEST, e);
+            });
         }
       } else if (req.body.text) {
         const shop = new Shop({
