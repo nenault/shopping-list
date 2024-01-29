@@ -22,10 +22,8 @@ function Shoppinglist() {
       }
     });
   };
+  
   const handleShoppingRemove = (shopping) => {
-    deleteShopping(shopping);
-  };
-  const handleClick = (shopping) => {
     deleteShopping(shopping);
   };
 
@@ -64,7 +62,7 @@ function Shoppinglist() {
         <div className="tile is-child box">
           <HandleShopping
             onCreate={handleShoppingAdd}
-            onClick={handleClick}
+            onClick={handleShoppingRemove}
             data={data}
           />
           {errors ? <div className="notification is-warning">{errors}</div> : null}
