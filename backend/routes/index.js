@@ -12,7 +12,7 @@ const routes = (app) => {
     Shop.findOne({ text }).then((shops) => {
       if (shops) {
         if (shops.isDeleted === false) {
-          return res.status(400).json({ message: "Doublon" });
+          serverResponses.sendError(res, messages.ALREADY_EXIST);
         } else {
           let text = shops.text;
           Shop.findOneAndUpdate(

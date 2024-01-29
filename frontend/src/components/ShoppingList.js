@@ -14,7 +14,7 @@ function Shoppinglist() {
 
   const handleShoppingAdd = (shopping) => {
     addShopping(shopping).then((r) => {
-      if (r.error) {
+      if (r.data.success === false) {
         setErrors("Déjà dans la liste");
         setTimeout(() => {
           setErrors(false);
